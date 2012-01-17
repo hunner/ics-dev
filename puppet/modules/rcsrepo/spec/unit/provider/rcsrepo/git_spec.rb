@@ -17,6 +17,7 @@ describe provider_class do
   it 'should be able to check if a created repo exists' do
     source = 'git://github.com/puppetlabs/puppet-lvm.git'
     @provider.resource[:source] = source
+    @provider.exists?.should == false
     @provider.create
     @provider.exists?.should == true
   end
@@ -28,8 +29,25 @@ describe provider_class do
     @provider.destroy
     @provider.exists?.should == false
   end
-  it 'should be able to get the repo revision'
-  it 'should be able to set the repo revision'
+  it 'should be able to get the repo revision' do
+    source = 'git://github.com/puppetlabs/puppet-lvm.git'
+    @provider.resource[:source] = source
+    @provider.create
+    @provider.revision
+  end
+  it 'should be able to set the repo revision during creation' do
+    source = 'git://github.com/puppetlabs/puppet-lvm.git'
+    @provider.resource[:source] = source
+    @provider.resource[:revision] = '64789a6dcb4ad7c5ff63443dadcf02d6019e7fb4'
+    @provider.create
+    @provider.resource.should == '64789a6dcb4ad7c5ff63443dadcf02d6019e7fb4'
+  end
+  it 'should be able to set the repo revision' do
+    @provider.resource[:source] = source
+    @provider.create
+    @provider.revision = '64789a6dcb4ad7c5ff63443dadcf02d6019e7fb4'
+    @provider.resource.should == '64789a6dcb4ad7c5ff63443dadcf02d6019e7fb4'
+  end
   after :each do
     FileUtils.rm_rf(File.dirname(@test_dir))
   end
