@@ -1,0 +1,9 @@
+Welcome to <%= fqdn %>
+
+Big legal warning here...
+
+<% interfaces.split(',').each do |interface| -%>
+<% if has_variable?('ipaddress_' + interface) then -%>
+<%= interface %>:  <%= eval('ipaddress_' + interface) %>
+<% end -%>
+<% end -%>

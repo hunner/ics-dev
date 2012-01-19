@@ -1,0 +1,3 @@
+# Each line describes one service, and is of the form:
+# 
+# service-name  port/protocol  [aliases ...]   [# comment]

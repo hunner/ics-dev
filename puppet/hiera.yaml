@@ -1,8 +1,9 @@
 ---
 :hierarchy:
-- %{team}/%{hostname}
-- %{team}/%{machinegroup}
-- %{team}
+- %{datacenter}/%{hostname}
+- %{datacenter}/%{machinegroup}
+- %{machinegroup}
+- %{datacenter}
 - common
 
 :backends:

@@ -38,15 +38,16 @@ describe provider_class do
   it 'should be able to set the repo revision during creation' do
     source = 'git://github.com/puppetlabs/puppet-lvm.git'
     @provider.resource[:source] = source
-    @provider.resource[:revision] = '64789a6dcb4ad7c5ff63443dadcf02d6019e7fb4'
+    @provider.resource[:revision] = '8a7b20e3e48cd22491d2dc39293140eed0a7e393'
     @provider.create
-    @provider.resource.should == '64789a6dcb4ad7c5ff63443dadcf02d6019e7fb4'
+    @provider.revision.should == '8a7b20e3e48cd22491d2dc39293140eed0a7e393'
   end
   it 'should be able to set the repo revision' do
+    source = 'git://github.com/puppetlabs/puppet-lvm.git'
     @provider.resource[:source] = source
     @provider.create
-    @provider.revision = '64789a6dcb4ad7c5ff63443dadcf02d6019e7fb4'
-    @provider.resource.should == '64789a6dcb4ad7c5ff63443dadcf02d6019e7fb4'
+    @provider.revision = '8a7b20e3e48cd22491d2dc39293140eed0a7e393'
+    @provider.revision.should == '8a7b20e3e48cd22491d2dc39293140eed0a7e393'
   end
   after :each do
     FileUtils.rm_rf(File.dirname(@test_dir))
